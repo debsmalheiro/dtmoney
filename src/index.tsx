@@ -14,7 +14,7 @@ createServer({
         {
           id: 1,
           title: 'Dev',
-          type: 'deposity',
+          type: 'deposit',
           category: 'Trabalho',
           amount: 3500,
           createdAt: new Date('2022-05-25 19:28:00')
