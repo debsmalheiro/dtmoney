@@ -20,19 +20,16 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
-  const transactions = useContext(TransactionContext);
+  const { createTransaction } = useContext(TransactionContext);
 
   const [type, setType] = useState("deposit");
   const [title, setTitle] = useState("");
-  const [value, setValue] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("");
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
-
-    const data = { title, value, category, type };
-
-    api.post("/transactions", data);
+    createTransaction({title, type, amount, category})
   }
 
   return (
@@ -60,8 +57,8 @@ export function NewTransactionModal({
         <input
           type="number"
           placeholder="Valor"
-          value={value}
-          onChange={({ target }) => setValue(Number(target.value))}
+          value={amount}
+          onChange={({ target }) => setAmount(Number(target.value))}
         />
         <TransactionTypeContainer>
           <RadioBox
